@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Container } from "./styles";
 import Header from "../components/Header";
 import Back from "../components/Back";
 import CarInfo from "../components/CarInfo";
 import Schedule from "../components/Schedule";
+import Okay from "../components/Okay";
+import Button from "../components/Button";
 
 const dbSchema = [
   {
@@ -37,61 +41,59 @@ const dbSchema = [
       ["SEX", 17, ["12:00", "13:00", "17:00"]],
       ["SAB", 18, ["13:00", "14:00", "15:00", "18:00"]],
       ["SEG", 20, ["9:00", "14:00"]],
-      [
-        "TER",
-        21,
-        [
-          "9:00",
-          "10:00",
-          "11:00",
-          "12:00",
-          "13:00",
-          "15:00",
-          "16:00",
-          "17:00",
-          "18:00",
-        ],
-      ],
-      [
-        "QUA",
-        22,
-        [
-          "9:00",
-          "10:00",
-          "11:00",
-          "12:00",
-          "13:00",
-          "14:00",
-          "15:00",
-          "16:00",
-          "17:00",
-          "18:00",
-        ],
-      ],
+      ["TER", 21, ["9:00", "10:00", "11:00", "12:00", "13:00", "15:00"]],
+      ["QUA", 22, ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00"]],
     ],
   },
 ];
 
 export default () => {
+  const [daySelected, setDaySelected] = useState();
+  const [hourSelected, setHourSelected] = useState();
+  const [scheduled, setScheduled] = useState(false);
   const [sendSchedule, setSendSchedule] = useState(false);
 
   return (
-    <div>
-      <Header href="https://github.com/guimkogus/loop" />
+    <>
+      <Header
+        href="https://github.com/guimkogus/loop"
+        onHomeClick="http://localhost:3000/"
+      />
       <Container>
         {!sendSchedule && (
           <div className="body">
-            <Back href="https://github.com/guimkogus/loop" />
+            <Back href="http://localhost:3000/" />
             <div className="content">
               <CarInfo description={dbSchema[1].description} />
               <Schedule
                 schedule={dbSchema[1].schedule}
                 setSendSchedule={setSendSchedule}
+                setDaySelected={setDaySelected}
+                daySelected={daySelected}
+                setHourSelected={setHourSelected}
+                hourSelected={hourSelected}
+                scheduled={scheduled}
+                setScheduled={setScheduled}
               />
             </div>
           </div>
         )}
+        {sendSchedule && (
+          <div className="concludedContainer">
+            <Okay />
+            <p className="title">Agendamento concluído!</p>
+            <div className="details">
+              <DateRangeOutlinedIcon />
+              <p>
+                {daySelected[0]}, {daySelected[1]} julho 2020 às {hourSelected}
+              </p>
+              <LocationOnOutlinedIcon />
+              <p>{dbSchema[1].description.location}</p>
+            </div>
+            <Button title="Outros Veículos" style={{ marginTop: 30 }} />
+          </div>
+        )}
       </Container>
-    </div>
+    </>
   );
 };

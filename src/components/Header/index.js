@@ -2,12 +2,12 @@ import React from "react";
 
 import { Container } from "./styles";
 
-export default ({ href }) => {
+export default ({ href, onHomeClick }) => {
   return (
     <Container>
       <div className="box">
         <div className="content">
-          <a href={href}>
+          <a href={onHomeClick}>
             <img src={require("../../assets/loop.png")} alt={"LOOP"} />
           </a>
           <div>

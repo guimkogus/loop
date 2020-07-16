@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import palette from "../config/palette";
 
 export const Container = styled.div`
   display: flex;
@@ -15,9 +16,40 @@ export const Container = styled.div`
     justify-content: space-between;
   }
 
-  text {
-    font-size: 24px;
-    text-align: center;
-    margin: 20px;
+  .concludedContainer {
+    background-color: ${palette.white};
+    width: 50%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin-top: 80px;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: ${palette.title};
+    }
+
+    .details {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      p,
+      svg {
+        color: ${palette.text};
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      svg {
+        font-size: 22px;
+        margin: 10px;
+      }
+    }
   }
 `;
