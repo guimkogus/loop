@@ -73,7 +73,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding-left: 20px;
   }
 `;

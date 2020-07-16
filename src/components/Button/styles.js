@@ -6,8 +6,9 @@ export const Container = styled.div`
     color: ${palette.white};
     background-color: ${palette.primary};
     height: 50px;
-    width: 130px;
+    width: 150px;
     text-transform: capitalize;
+    font-weight: bold;
   }
 
   button:hover {

@@ -11,6 +11,13 @@ export const Container = styled.div`
   border-style: solid;
 
   .content {
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .monthName {
+      color: ${palette.text};
+      font-size: 24px;
+      font-weight: bold;
+    }
   }
 `;
